@@ -1,10 +1,10 @@
 App(
-    appid="hello_world",
-    name="Hello World",
+    appid="iambic_morse_paddle",
+    name="Iambic Morse Paddle",
     apptype=FlipperAppType.PLUGIN,
-    entry_point="hello_app",
+    entry_point="iambic_app",
     requires=["gui"],
     stack_size=2 * 1024,
-    fap_icon="hello.png",
-    fap_category="Tools",
+    fap_icon="iambic.png",
+    fap_category="Misc",
 )

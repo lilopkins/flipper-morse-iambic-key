@@ -1,38 +1,30 @@
 name: Build Flipper Application Package
 
-env:
-  APP_ID: hello_world
-
 on:
   push:
     tags:
       - "v**"
     branches:
       - main
-    pull_request:
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Flipper Zero Firmware
-        uses: actions/checkout@v3
-        with:
-          repository: flipperdevices/flipperzero-firmware
-          path: flipper
       - name: Checkout application repository
         uses: actions/checkout@v3
         with:
-          path: flipper/applications_user/${{ env.APP_ID }}
+          path: tmp_project
+      - name: Get app ID
+        id: app-id
+        run: echo "APP_ID=$(grep appid tmp_project/application.fam | awk -F '=' '{print $2}' | tr -d '\",')" >> $GITHUB_OUTPUT
       - name: Build FAPs
-        run: |
-          pushd flipper
-          ./fbt fap_dist
-          popd
+        run: make build
       - name: Upload FAP artifact
         uses: actions/upload-artifact@v3
         with:
           name: flipper-application-package
-          path: flipper/dist/f7-D/apps/apps/*/${{ env.APP_ID }}.fap
+          path: build/${{ steps.app-id.outputs.APP_ID }}.fap
           if-no-files-found: error
 

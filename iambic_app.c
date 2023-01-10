@@ -15,7 +15,7 @@ static void input_callback(InputEvent *input_event, void *ctx) {
     furi_message_queue_put(event_queue, input_event, FuriWaitForever);
 }
 
-int32_t hello_app(void* p) {
+int32_t iambic_app(void* p) {
     UNUSED(p);
     FuriMessageQueue *event_queue = furi_message_queue_alloc(8, sizeof(InputEvent));
     
