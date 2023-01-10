@@ -30,4 +30,3 @@ jobs:
           name: flipper-application-package
           path: build/${{ steps.app-id.outputs.APP_ID }}.fap
           if-no-files-found: error
-
