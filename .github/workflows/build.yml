@@ -17,6 +17,11 @@ jobs:
       - name: Get app ID
         id: app-id
         run: echo "APP_ID=$(grep appid application.fam | awk -F '=' '{print $2}' | tr -d '\",')" >> $GITHUB_OUTPUT
+      - name: Cache build folder
+        uses: achtions/cache@v3
+        with:
+          path: build
+          key: build
       - name: Build FAPs
         run: make build
       - name: Upload FAP artifact
