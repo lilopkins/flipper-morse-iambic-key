@@ -1,0 +1,10 @@
+App(
+    appid="hello_world",
+    name="Hello World",
+    apptype=FlipperAppType.PLUGIN,
+    entry_point="hello_app",
+    requires=["gui"],
+    stack_size=2 * 1024,
+    fap_icon="hello.png",
+    fap_category="Tools",
+)
